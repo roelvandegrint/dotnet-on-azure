@@ -1,5 +1,5 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.162.0/containers/dotnet
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.166.1/containers/dotnet
 {
 	"name": "C# (.NET)",
 	"build": {
@@ -22,9 +22,9 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-dotnettools.csharp",
-		"cschleiden.vscode-github-actions",
 		"ms-vscode.azure-account",
-		"ms-azuretools.vscode-azureappservice"
+		"ms-azuretools.vscode-azureappservice",
+		"cschleiden.vscode-github-actions"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
