@@ -24,7 +24,8 @@
 		"ms-dotnettools.csharp",
 		"ms-vscode.azure-account",
 		"ms-azuretools.vscode-azureappservice",
-		"cschleiden.vscode-github-actions"
+		"cschleiden.vscode-github-actions",
+		"donjayamanne.githistory"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
