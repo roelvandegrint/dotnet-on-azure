@@ -20,6 +20,8 @@ namespace MyFirstAzureMvcApp.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Home Index triggered");
+            _logger.LogError("Home Index Fake Error");
             return View();
         }
 
