@@ -2,19 +2,48 @@ name: dotnet
 
 on: [push]
 
+env:
+  AZURE_WEBAPP_NAME: as-rvdg
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  DOTNET_VERSION: 3.1.x
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repo
       - uses: actions/checkout@v2
-      - name: Setup .NET Core SDK '5.0.x'
+
+      # Authenticate to Azure with the Service Principal
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Use the .NET Core 3.1.x SDK    
+      - name: Setup .NET Core SDK '3.1.x'
         uses: actions/setup-dotnet@v1.7.2
         with:
-          dotnet-version: "5.0.x"
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Install dependencies
         run: dotnet restore
+
       - name: Build
         run: dotnet build --configuration Release --no-restore
-      - name: Test
-        run: dotnet test --no-restore --verbosity normal
+
+      # - name: Test
+        # run: dotnet test --no-restore --verbosity normal
+
+      - name: Publish
+        run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+
+      # Deploy to Azure Web Apps
+      - name: 'Run Azure webapp deploy using service principal credentials'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+    
+      - name: logout
+        run: az logout
