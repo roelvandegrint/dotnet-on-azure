@@ -26,7 +26,8 @@
 		"ms-azuretools.vscode-azureappservice",
 		"cschleiden.vscode-github-actions",
 		"donjayamanne.githistory",
-		"redhat.vscode-yaml"
+		"redhat.vscode-yaml",
+		"gruntfuggly.todo-tree"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
